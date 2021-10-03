@@ -32,7 +32,7 @@ const SortedSearchedMovies = () => {
           Sort
         </button>
       </div>
-      {foundMovie.length > 0 ? (
+      {foundMovie && foundMovie.length > 0 ? (
         <table className="table text-light table-bordered">
           <thead>
             <tr>

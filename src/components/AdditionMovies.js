@@ -51,7 +51,11 @@ const AdditionMovies = () => {
       <button className="btn btn-outline-light mb-1" onClick={addingMovie}>
         Add
       </button>
-      {Object.keys(addedMovie).length > 0 ? <h2>Successfully Added</h2> : ""}
+      {addedMovie && Object.keys(addedMovie).length > 0 ? (
+        <h2>Successfully Added</h2>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -7,7 +7,7 @@ The **_Movies Catalog_** app was written in macOS Big Sur v11.6.
 3. Open the folder with the project.
 4. Type **_npm install_** in the terminal.
 5. After **_npm install_** is finished, type npm start.
-6. <http://localhost:3000> is opened on browser.
+6. <http://localhost:3000> will be opened in browser.
 
 ### Instructions for navigation:
 
