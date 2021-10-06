@@ -4,12 +4,34 @@ export const IMPORT_MOVIES = "IMPORT_MOVIES";
 export const ADD_MOVIE = "ADD_MOVIE";
 export const FOUND_MOVIE = "FOUND_MOVIE";
 export const SORT_MOVIES = "SORT_MOVIE";
+export const SIGN_UP = "SIGN_UP";
 
-const apiUrl = "http://localhost:8000/api/v1/";
+const apiUrl = "http://localhost:8000/api/v1/movies/";
 const auth = {
   "Content-Type": "application/json;charset=utf-8",
   Authorization:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI0OTcyMjYwfQ.X31cryg_A126WLYT96PD-SLLFWSxb2SeoQZ4cvx3VhU",
+};
+
+export const registration = (body) => async (dispatch) => {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(body),
+    redirect: "follow",
+  };
+  const responce = await fetch(
+    "http://localhost:8000/api/v1/users",
+    requestOptions
+  );
+  const result = await responce.json();
+
+  dispatch({
+    type: SIGN_UP,
+    payload: result.token,
+  });
 };
 
 export const importMovies = (file) => async (dispatch) => {
@@ -22,7 +44,7 @@ export const importMovies = (file) => async (dispatch) => {
     body: file,
     redirect: "follow",
   };
-  const responce = await fetch(apiUrl + "movies/import", requestOptions);
+  const responce = await fetch(apiUrl + "import", requestOptions);
   const result = await responce.json();
 
   dispatch({
@@ -38,7 +60,7 @@ export const deleteMovie = (id) => async (dispatch) => {
     redirect: "follow",
   };
 
-  const responce = await fetch(apiUrl + `movies/${id}`, requestOptions);
+  const responce = await fetch(apiUrl + id, requestOptions);
   const result = await responce.json();
   dispatch({
     type: DELETE_MOVIE,
@@ -53,7 +75,7 @@ export const getMovie = (id) => async (dispatch) => {
     redirect: "follow",
   };
 
-  const responce = await fetch(apiUrl + `movies/${id}`, requestOptions);
+  const responce = await fetch(apiUrl + id, requestOptions);
   const result = await responce.json();
 
   dispatch({
@@ -70,7 +92,7 @@ export const addMovie = (body) => async (dispatch) => {
     redirect: "follow",
   };
 
-  const responce = await fetch(apiUrl + "movies", requestOptions);
+  const responce = await fetch(apiUrl, requestOptions);
   const result = await responce.json();
   dispatch({
     type: ADD_MOVIE,
@@ -85,10 +107,7 @@ export const searchMovie = (value) => async (dispatch) => {
     redirect: "follow",
   };
 
-  const responce = await fetch(
-    apiUrl + `movies?search=${value}`,
-    requestOptions
-  );
+  const responce = await fetch(apiUrl + `?search=${value}`, requestOptions);
   const result = await responce.json();
   dispatch({
     type: FOUND_MOVIE,
@@ -103,7 +122,7 @@ export const sortMovies = () => async (dispatch) => {
     redirect: "follow",
   };
 
-  const responce = await fetch(apiUrl + "movies?sort=title", requestOptions);
+  const responce = await fetch(apiUrl + "?sort=title", requestOptions);
   const result = await responce.json();
   dispatch({
     type: SORT_MOVIES,

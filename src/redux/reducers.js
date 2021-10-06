@@ -5,6 +5,7 @@ import {
   ADD_MOVIE,
   FOUND_MOVIE,
   SORT_MOVIES,
+  SIGN_UP,
 } from "./actions";
 
 export const initialState = {
@@ -14,6 +15,7 @@ export const initialState = {
   addedMovie: {},
   importedMovies: {},
   deleteStatus: 0,
+  token: {},
 };
 export default function stateReducer(state = initialState, action) {
   switch (action.type) {
@@ -29,6 +31,8 @@ export default function stateReducer(state = initialState, action) {
       return { ...state, foundMovie: action.payload };
     case SORT_MOVIES:
       return { ...state, sortMovies: action.payload };
+    case SIGN_UP:
+      return { ...state, token: action.payload };
     default:
       return state;
   }

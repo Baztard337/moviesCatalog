@@ -7,6 +7,7 @@ import AdditionMovies from "./components/AdditionMovies";
 import DeletionMovies from "./components/DeletionMovies";
 import SortedSearchedMovies from "./components/SortedSearchedMovies";
 import GettingMovie from "./components/GettingMovies";
+import LoginPage from "./components/LoginPage";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
         <Route path="/delete" component={DeletionMovies} />
         <Route path="/search" component={SortedSearchedMovies} />
         <Route path="/info" component={GettingMovie} />
-        <Route exact path="/" component={HomePage} />
+        <Route path="/home" component={HomePage} />
+        <Route exact path="/" component={LoginPage} />
       </Switch>
     </div>
   );
