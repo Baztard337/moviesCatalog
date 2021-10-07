@@ -6,6 +6,7 @@ import {
   FOUND_MOVIE,
   SORT_MOVIES,
   SIGN_UP,
+  GET_ALL_MOVIE,
 } from "./actions";
 
 export const initialState = {
@@ -15,6 +16,7 @@ export const initialState = {
   addedMovie: {},
   importedMovies: {},
   deleteStatus: 0,
+  allMovies: {},
   token: {},
 };
 export default function stateReducer(state = initialState, action) {
@@ -33,6 +35,8 @@ export default function stateReducer(state = initialState, action) {
       return { ...state, sortMovies: action.payload };
     case SIGN_UP:
       return { ...state, token: action.payload };
+    case GET_ALL_MOVIE:
+      return { ...state, allMovies: action.payload };
     default:
       return state;
   }

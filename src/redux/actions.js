@@ -5,6 +5,7 @@ export const ADD_MOVIE = "ADD_MOVIE";
 export const FOUND_MOVIE = "FOUND_MOVIE";
 export const SORT_MOVIES = "SORT_MOVIE";
 export const SIGN_UP = "SIGN_UP";
+export const GET_ALL_MOVIE = "GET_ALL_MOVIE";
 
 const apiUrl = "http://localhost:8000/api/v1/movies/";
 const auth = {
@@ -80,6 +81,22 @@ export const getMovie = (id) => async (dispatch) => {
 
   dispatch({
     type: GET_MOVIE,
+    payload: result.data,
+  });
+};
+
+export const getAllMovies = () => async (dispatch) => {
+  const requestOptions = {
+    method: "GET",
+    headers: auth,
+    redirect: "follow",
+  };
+
+  const responce = await fetch(apiUrl + "?limit=40", requestOptions);
+  const result = await responce.json();
+
+  dispatch({
+    type: GET_ALL_MOVIE,
     payload: result.data,
   });
 };
